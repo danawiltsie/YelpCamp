@@ -23,7 +23,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(methodOverride("_method"));
 //mongoose.connect("mongodb://localhost/yelp_camp"); //local
-mongoose.connect("mongodb://danawiltsie:Th1rt3en@ds151702.mlab.com:51702/danawiltsie_yelpcamp"); //production
+//mongoose.connect("mongodb://danawiltsie:Th1rt3en@ds151702.mlab.com:51702/danawiltsie_yelpcamp"); //production
+mongoose.connect("process.env.DATABASEURL");
 app.use(flash());
 
 //seedDB();// SEEDS THE DB USE FOR TESTING ONLY
