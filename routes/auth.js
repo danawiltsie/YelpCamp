@@ -36,10 +36,10 @@ router.get("/login", function(req,res){
 });
 
 router.post("/login", passport.authenticate("local", {
-    successRedirect: "/campgrounds",
     failureRedirect: "/login"
 }), function(req,res){
-    
+        res.redirect(req.session.returnTo || '/');
+        delete req.session.returnTo;
 });
 
 router.get("/logout", function(req,res){

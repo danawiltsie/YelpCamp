@@ -1,8 +1,68 @@
-<% include ../partials/header %>
-<h1>Login</h1>
-<form method="POST" action="/login">
-    <input type="text" placeholder="username" name="username">
-    <input type="password" placeholder="password" name="password">
-    <button>Start Searching!</button>
-</form>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>YelpCamp</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/stylesheets/form.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript" async></script>
+    </head>
+    <body>
+    
+    <div class="container">
+        <% if(error && error.length > 0){ %>
+            <div class="alert alert-danger" role="alert">
+                <%= error %>
+            </div>
+        <% } %>
+        <% if(success && success.length > 0){ %>
+            <div class="alert alert-success" role="alert">
+                <%= success %>
+            </div>
+        <% } %>
+    </div>
+    
+    <div id="landing-header">
+ 		<h1>Login</h1>
+ 		<hr>
+ 		<div class="container">
+            <div class="row" style="width: 30%; margin: 0 auto;">
+                <form method="POST" action="/login">
+                    <div class="form-group">
+                        <input class="form-control" type="text" placeholder="username" name="username">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="password" placeholder="password" name="password">
+                    </div> 
+                    <div class="form-group">
+                        <button class="btn btn-lg btn-primary btn-block">Start Searching!</button>
+                    </div>
+                    <p>
+                        <a href="/" class="btn btn-xs btn-default">Forgot password?</a>
+                    </p>
+                    <p>
+                        <a href="/register" class="btn btn-xs btn-default">Sign up!</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <ul class="slideshow">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+
 <% include ../partials/footer %>
+
+
+
+
+
+
+
+
+
+

@@ -49,6 +49,8 @@ var middlewareObject = {
         if(req.isAuthenticated()){
             return next();
         } else {
+            console.log(req.headers.referer);
+            req.session.returnTo = req.headers.referer;
             req.flash("error", "You must be logged in to use this feature");
             res.redirect("/login");
         }

@@ -60,7 +60,21 @@ router.get("/:id", function(req,res){
             req.flash("error", "Something went wrong; Please try again");
             console.log(err)
         }else{
-            res.render("campgrounds/show", {campground: foundCampground}); 
+            var favouriteTorF = false;
+            if(req.user){
+                console.log(req.user.favourites);
+                console.log(req.params.id);
+                req.user.favourites.forEach(function(favourite){
+                    console.log(favourite);
+                    if(favourite.equals(req.params.id)){
+                        
+                        favouriteTorF = true;
+                    }
+                });
+            }
+            console.log(favouriteTorF);
+            console.log(req.user);
+            res.render("campgrounds/show", {campground: foundCampground, favouriteTorF: favouriteTorF}); 
         }
     });
 });
