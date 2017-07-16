@@ -15,16 +15,16 @@
                 <div class="caption-full">
                     <h4 class="pull-right">$<%= campground.price %>/night</h4>
                     <h4>
-                        <a href=""><%= campground.name%></a>
+                        <% if(favouriteTorF == false){ %>
+                            <form action="/campgrounds/favourites/<%=campground._id%>" method="POST">
+                                <button class="btn btn-success btn-md favourite"><i class="fa fa-heart-o " aria-hidden="true"></i></button>
+                            </form>
+                        <% } else { %>
+                            <button class="btn btn-md favourite"><i class="fa fa-heart" aria-hidden="true"></i></button>
+                        <% } %>
+                        <a href=""> <%= campground.name%></a>
                     </h4>
                     <p><%= campground.description%></p>
-                    <% if(favouriteTorF == false){ %>
-                        <form action="/campgrounds/<%=campground._id%>/favourites" method="POST">
-                            <button id ="favourite" class="btn btn-success btn-md"><i class="fa fa-heart-o " aria-hidden="true"></i> Add to favourites</button>
-                        </form>
-                    <% } else { %>
-                        <button id="favourited" class="btn btn-md"><i class="fa fa-heart" aria-hidden="true"></i> Favourited</button>
-                    <% } %>
                     <% if(currentUser && campground.author.id.equals(currentUser._id)){ %>
                     <div class="text-right">
                         <a class="btn btn-xs btn-default" href="/campgrounds/<%=campground._id%>/edit">Edit</a>

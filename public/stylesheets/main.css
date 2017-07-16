@@ -18,3 +18,15 @@
     width: 200px;
     height: 200px;
 }
+
+body{
+    font-family: 'Montserrat', sans-serif;
+}
+
+.favourite{
+    float: left;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    position: relative;
+    bottom: 7px;
+}

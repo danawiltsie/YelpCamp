@@ -2,14 +2,12 @@
 <div class="container">
     <header class="jumbotron"> 
         <div class="container">
-            <h1>Welcome to YelpCamp</h1>
-            <p>The best place to discover your next adventure destination.</p>
-            <p>
-                <a type="button" class="btn btn-primary btn-lg" href="/campgrounds/new">Add a New Campground</a>
-            </p>
+            <h1><i class="fa fa-heart" aria-hidden="true"></i> Favourites</h1>
+            <p>Sometimes the best places are the ones most familiar</p>
         </div>
     </header>
     <div class="row" style="display:flex; flex-wrap:wrap;">
+        <%if(campgrounds != {}){ %> 
         <% campgrounds.forEach(function(site){ %>
             <div class="col-md-3 col-sm-6">
                 <div class="thumbnail">
@@ -18,11 +16,14 @@
                         <h4><%= site.name %></h4>
                         <p>
                             <a type="button" class="btn btn-primary" href="/campgrounds/<%= site._id%>">View</a>
+                            <form class="deleteForm" action="/campgrounds/favourites/<%=site._id%>?_method=DELETE" method="POST">
+                                <button class="btn btn-default deleteForm">Remove</button>
+                            </form>
                         </p>
                     </div>
                 </div>
             </div>
-        <% }); %>
+        <% }); }%>
     </div>
 </div>
 <% include ../partials/footer %>

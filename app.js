@@ -48,11 +48,12 @@ app.use(function(req,res,next){
     next();
 });
 
+app.use("/campgrounds/favourites", favouriteRoutes);
 app.use("/campgrounds/:id/comments", commentRoutes);
 app.use("/campgrounds", campgroundRoutes);
 app.use(authRoutes);
 app.use(indexRoutes);
-app.use("/campgrounds", favouriteRoutes);
+
 
 app.listen(process.env.PORT, process.env.IP, function(){
     console.log("YelpCamp Server Start");
