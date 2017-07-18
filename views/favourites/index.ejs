@@ -1,11 +1,11 @@
 <% include ../partials/header %>
+<header class="jumbotron"> 
+    <div class="container">
+        <h1><i class="fa fa-heart" aria-hidden="true"></i> Favourites</h1>
+        <p>Sometimes the best places are the ones most familiar</p>
+    </div>
+</header>
 <div class="container">
-    <header class="jumbotron"> 
-        <div class="container">
-            <h1><i class="fa fa-heart" aria-hidden="true"></i> Favourites</h1>
-            <p>Sometimes the best places are the ones most familiar</p>
-        </div>
-    </header>
     <div class="row" style="display:flex; flex-wrap:wrap;">
         <%if(campgrounds != {}){ %> 
         <% campgrounds.forEach(function(site){ %>
