@@ -19,6 +19,12 @@
     height: 200px;
 }
 
+#map{
+    width: 100%;
+    height: 400px;
+    margin-bottom: 20px;
+}
+
 body{
     font-family: 'Montserrat', sans-serif;
 }
@@ -29,4 +35,44 @@ body{
     margin-bottom: 5px;
     position: relative;
     bottom: 7px;
+}
+
+.btn{
+    border-radius: 2px;
+}
+
+.jumbotron{
+    background-image: url(https://pixabay.com/get/eb37b50c21f1053ed1534705fb09439fe273ead01cac104495f0c27cafe9b6be/pinheiro-2243954_1920.jpg);
+    background-position: center;
+    color: #FFF;
+    text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3), 1px 3px 12px rgba(0, 0, 0, 0.6);
+    height: 300px;
+    position: relative;
+}
+
+.jumbotron .container{
+    margin-top: 0;
+    margin-left: 19.5%;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%)
+}
+
+.navbar{
+    margin-bottom: 0px;
+    border-radius: 0px;
+}
+
+.jumbotron.small{
+    height: 100px;
+    position: relative;
+}
+
+.jumbotron.small h2{
+    font-size: 40px;
+}
+
+.alert{
+    border-radius: 0px;
+    margin-bottom: 0px;
 }

@@ -16,6 +16,10 @@ body{
     position: relative;
 }
 
+.btn{
+  border-radius: 2px;
+}
+
 .slideshow{
     top: 0;
     left: 0;

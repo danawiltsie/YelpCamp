@@ -5,22 +5,44 @@
 
         <form action="/campgrounds" method="POST">
             <div class="form-group">
-                <input class="form-control" type="text" placeholder="name" name="name">
+                <input class="form-control" type="text" placeholder="name" name="name" required>
             </div>            
             <div class="form-group">
                 <input class="form-control" type="number" placeholder="$(USD)/night" name="price" min="0.00" step="0.01">
             </div>
             <div class="form-group">
-                <input class="form-control" type="text" placeholder="image url" name="image">
-            </div>            
-            <div class="form-group">
-                <input class="form-control" type="text" placeholder="description" name="description">
+                <input class="form-control" type="text" placeholder="image url" name="image" required>
             </div>
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="description" name="description" required>
+            </div>
+            <input type="hidden" name="lat" value="" id="lat" required>
+            <input type="hidden" name="lng" value="" id="lng" required>
             <div class="form-group">
                 <button class="btn btn-lg btn-primary btn-block">Submit</button>
             </div>
         </form>
+        <h3>Mark the location of the campsite on the map</h3>
+        <div id="map"></div>
         <a href="/campgrounds">Return to Campgrounds</a>
     </div>
 </div>
+<script>
+    function initMap() {
+        var initialLocation = {lat: 49.281688, lng: -123.118489};
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 4,
+            center: initialLocation
+        });
+        google.maps.event.addListener(map, 'click', function(event) {
+            var marker = new google.maps.Marker({
+                position: event.latLng,
+                map: map
+            });
+            document.getElementById("lat").value = event.latLng.lat();
+            document.getElementById("lng").value = event.latLng.lng();
+        });
+    }
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEg7NomH8LKb1DGTPHb_NFPI2zqa0zSIc&callback=initMap"></script>
 <% include ../partials/footer %>

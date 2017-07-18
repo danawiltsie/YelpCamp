@@ -33,7 +33,7 @@ router.get("/", middleware.isLoggedIn, function(req,res){
 router.post("/:id", middleware.isLoggedIn, function(req,res){
     req.user.favourites.push(req.params.id);
     req.user.save();
-    res.flash("success", "Campground added to favourites!");
+    req.flash("success", "Campground added to favourites");
     res.redirect("back");
 });
 

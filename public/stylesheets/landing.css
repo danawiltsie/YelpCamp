@@ -16,6 +16,10 @@ body{
     position: relative;
 }
 
+.btn{
+  border-radius: 2px;
+}
+
 .slideshow{
     top: 0;
     left: 0;
@@ -42,7 +46,7 @@ body{
 }
 
 .slideshow li:nth-child(1) { 
-  background-image: url(http://i.imgur.com/K3mPv14.jpg) 
+  background-image: url(http://i.imgur.com/emvhOnb.jpg); 
 }
 .slideshow li:nth-child(2) { 
   background-image: url(http://i.imgur.com/SBEmFpv.jpg);

@@ -1,7 +1,8 @@
 var express = require("express");
 var router = express.Router();
 var Campground = require("../models/campground");
-var middleware = require("../middleware")
+var middleware = require("../middleware");
+var request = require("request");
 
 // =============================================================================
 // ROUTES
@@ -18,6 +19,8 @@ router.post("/", middleware.isLoggedIn, function(req,res){
         image: req.body.image,
         description: req.body.description,
         price: req.body.price,
+        lat: req.body.lat,
+        lng: req.body.lng,
         author: author
     };
     Campground.create(newCampground, function(err, newlyCreated){
@@ -27,7 +30,7 @@ router.post("/", middleware.isLoggedIn, function(req,res){
             res.redirect("back");
         } else {
             req.flash("success", "Campground added");
-            res.redirect("/campgrounds");
+            res.redirect("/campgrounds"); 
         }
     });
 });
@@ -60,21 +63,16 @@ router.get("/:id", function(req,res){
             req.flash("error", "Something went wrong; Please try again");
             console.log(err)
         }else{
-            var favouriteTorF = false;
+            var isFavourite = false;
             if(req.user){
-                console.log(req.user.favourites);
-                console.log(req.params.id);
                 req.user.favourites.forEach(function(favourite){
-                    console.log(favourite);
                     if(favourite.equals(req.params.id)){
-                        
-                        favouriteTorF = true;
+                        isFavourite = true;
                     }
                 });
             }
-            console.log(favouriteTorF);
-            console.log(req.user);
-            res.render("campgrounds/show", {campground: foundCampground, favouriteTorF: favouriteTorF}); 
+            console.log(foundCampground);
+            res.render("campgrounds/show", {campground: foundCampground, favouriteTorF: isFavourite})
         }
     });
 });
