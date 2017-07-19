@@ -1,9 +1,10 @@
 <% include ../partials/header %>
 <div class="jumbotron small">
-    <div class="container">
+    <div id="headerContent" class="container">
         <h2 class="lead"><i class="fa fa-tree" aria-hidden="true"></i> YelpCamp</h2>
     </div>
 </div>
+<div class="smallborder"></div>
 <div class="container">
     <div class="row">
         <div class="col-md-3">
@@ -19,17 +20,18 @@
                 <img class="img-responsive" src="<%= campground.image%>">
                 <div class="caption-full">
                     <h4 class="pull-right">$<%= campground.price %>/night</h4>
-                    <h4>
+                    <h4 class="break">
                         <% if(favouriteTorF == false){ %>
                             <form action="/campgrounds/favourites/<%=campground._id%>" method="POST">
-                                <button class="btn btn-success btn-sm favourite"><i class="fa fa-heart-o " aria-hidden="true"></i></button>
+                                <button class="btn btn-success btn-sm favourite" id="favouriteButton"><i class="fa fa-heart-o " aria-hidden="true"></i> Add to Favourites<span id="favouriteButtonContent"></span></button>
                             </form>
                         <% } else { %>
-                            <button class="btn btn-sm favourite"><i class="fa fa-heart" aria-hidden="true"></i></button>
+                            <button class="btn btn-sm btn-danger favourite" id="favouritedButton"><i class="fa fa-heart" aria-hidden="true"></i> Favourited</button>
                         <% } %>
                         <a href=""> <%= campground.name%></a>
                     </h4>
-                    <p><%= campground.description%></p>
+                    
+                    <p class="break"><%= campground.description%></p>
                     <% if(currentUser && campground.author.id.equals(currentUser._id)){ %>
                     <div class="text-right">
                         <a class="btn btn-xs btn-default" href="/campgrounds/<%=campground._id%>/edit">Edit</a>
