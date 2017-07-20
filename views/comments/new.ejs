@@ -2,18 +2,69 @@
 <div class="container">
     <h1 style="text-align: center;">Add a New Comment for <%= campground.name %></h1>
     <div class="row" style="width: 30%; margin: 0 auto;">
-
+        <div id="rating">
+            <span class="star star5">&#9734</span>
+            <span class="star star4">&#9734</span>
+            <span class="star star3">&#9734</span>
+            <span class="star star2">&#9734</span>
+            <span class="star star1">&#9734</span>
+        </div>
         <form action="/campgrounds/<%=campground._id%>/comments" method="POST">
             <div class="form-group">
-                <input class="form-control" type="text" name="comment[text]" placeholder="text">
-            </div>            
+                <input required class="form-control" type="text" name="comment[text]" placeholder="text">
+            </div> 
+                <input hidden required type="number" id="rating-form" name="comment[rating]" value="">
             <div class="form-group">
                 <button class="btn btn-lg btn-primary btn-block">Submit</button>
             </div>
+            
         </form>
         <a href="/campgrounds">Return to Campground</a>
     </div>
 
 </div>
-
+<script>
+var ratingForm = document.getElementById("rating-form");
+var stars = document.getElementsByClassName("star");
+    stars[4].addEventListener("click", function(){
+        ratingForm.value = 1;
+        stars[4].innerHTML = "&#9733";
+        stars[3].innerHTML = "&#9734";
+        stars[2].innerHTML = "&#9734";
+        stars[1].innerHTML = "&#9734";
+        stars[0].innerHTML = "&#9734";
+    });    
+    stars[3].addEventListener("click", function(){
+        ratingForm.value = 2;
+        stars[4].innerHTML = "&#9733";
+        stars[3].innerHTML = "&#9733";
+        stars[2].innerHTML = "&#9734";
+        stars[1].innerHTML = "&#9734";
+        stars[0].innerHTML = "&#9734";
+    });    
+    stars[2].addEventListener("click", function(){
+        ratingForm.value = 3;
+        stars[4].innerHTML = "&#9733";
+        stars[3].innerHTML = "&#9733";
+        stars[2].innerHTML = "&#9733";
+        stars[1].innerHTML = "&#9734";
+        stars[0].innerHTML = "&#9734";
+    });    
+    stars[1].addEventListener("click", function(){
+        ratingForm.value = 4;
+        stars[4].innerHTML = "&#9733";
+        stars[3].innerHTML = "&#9733";
+        stars[2].innerHTML = "&#9733";
+        stars[1].innerHTML = "&#9733";
+        stars[0].innerHTML = "&#9734";
+    });    
+    stars[0].addEventListener("click", function(){
+        ratingForm.value = 5;
+        stars[4].innerHTML = "&#9733";
+        stars[3].innerHTML = "&#9733";
+        stars[2].innerHTML = "&#9733";
+        stars[1].innerHTML = "&#9733";
+        stars[0].innerHTML = "&#9733";
+    }); 
+</script>
 <% include ../partials/footer %>

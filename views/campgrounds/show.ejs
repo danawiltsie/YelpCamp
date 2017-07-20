@@ -26,9 +26,9 @@
                                 <button class="btn btn-success btn-sm favourite" id="favouriteButton"><i class="fa fa-heart-o " aria-hidden="true"></i> Add to Favourites<span id="favouriteButtonContent"></span></button>
                             </form>
                         <% } else { %>
-                            <button class="btn btn-sm btn-danger favourite" id="favouritedButton"><i class="fa fa-heart" aria-hidden="true"></i> Favourited</button>
+                            <button class="btn btn-sm btn-default favourite" id="favouritedButton"><i class="fa fa-heart" aria-hidden="true"></i> Favourited</button>
                         <% } %>
-                        <a href=""> <%= campground.name%></a>
+                        <strong><a href=""> <%= campground.name%></a></strong>
                     </h4>
                     
                     <p class="break"><%= campground.description%></p>
@@ -50,9 +50,47 @@
                 <% campground.comments.forEach(function(comment){ %>
                     <div class="row">
                         <div class="col-md-12">
-                            <strong><%= comment.author.username %></strong>
+                            <strong>
+                                <%= comment.author.username %>
+                                <% if(comment.rating == 1){ %>
+                                    <span class="star-rating">&#9733</span>
+                                    <span class="star-rating">&#9734</span>
+                                    <span class="star-rating">&#9734</span>
+                                    <span class="star-rating">&#9734</span>
+                                    <span class="star-rating">&#9734</span>
+                                <% } %>
+                                <% if(comment.rating == 2){ %>
+                                    <span class="star-rating">&#9733</span>
+                                    <span class="star-rating">&#9733</span>
+                                    <span class="star-rating">&#9734</span>
+                                    <span class="star-rating">&#9734</span>
+                                    <span class="star-rating">&#9734</span>
+                                <% } %>
+                                <% if(comment.rating == 3){ %>
+                                    <span class="star-rating">&#9733</span>
+                                    <span class="star-rating">&#9733</span>
+                                    <span class="star-rating">&#9733</span>
+                                    <span class="star-rating">&#9734</span>
+                                    <span class="star-rating">&#9734</span>
+                                <% } %>
+                                <% if(comment.rating == 4){ %>
+                                    <span class="star-rating">&#9733</span>
+                                    <span class="star-rating">&#9733</span>
+                                    <span class="star-rating">&#9733</span>
+                                    <span class="star-rating">&#9733</span>
+                                    <span class="star-rating">&#9734</span>
+                                <% } %>
+                                <% if(comment.rating == 5){ %>
+                                    <span class="star-rating">&#9733</span>
+                                    <span class="star-rating">&#9733</span>
+                                    <span class="star-rating">&#9733</span>
+                                    <span class="star-rating">&#9733</span>
+                                    <span class="star-rating">&#9733</span>
+                                <% } %>
+                            </strong>
                             <span class="pull-right">10 days ago</span>
                             <p><%= comment.text %></p>
+                            <p><%= comment.createdAt %></p>
                             <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
                                 <span class="pull-right">
                                     <a class="btn btn-xs btn-default" href="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>/edit">Edit</a>

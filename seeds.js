@@ -27,27 +27,27 @@ function seedDB(){
             console.log("COULDN'T CLEAR DATABASE");
         }else{
             console.log("CLEARED DATABASE");
-            data.forEach(function(seed){
-                Campground.create(seed, function(err, campground){
-                    if(err){
-                        console.log(err);
-                    }else{
-                        console.log("ADDED SEEDED CAMPGROUND");
-                        Comment.create(
-                            {
-                                text: "This place is great, but I HATE the outdoors.",
-                                author: "Dan Wiltsie"
-                            }, 
-                            function(err, comment){
-                                if(err) console.log("ERROR POSTING COMMENTS");
-                                else{
-                                    campground.comments.push(comment);
-                                    campground.save();
-                                }
-                        });
-                    }
-                });
-            });
+            // data.forEach(function(seed){
+            //     Campground.create(seed, function(err, campground){
+            //         if(err){
+            //             console.log(err);
+            //         }else{
+            //             console.log("ADDED SEEDED CAMPGROUND");
+            //             Comment.create(
+            //                 {
+            //                     text: "This place is great, but I HATE the outdoors.",
+            //                     author: "Dan Wiltsie"
+            //                 }, 
+            //                 function(err, comment){
+            //                     if(err) console.log("ERROR POSTING COMMENTS");
+            //                     else{
+            //                         campground.comments.push(comment);
+            //                         campground.save();
+            //                     }
+            //             });
+            //         }
+            //     });
+            // });
         }
     });
     //add test campgrounds
