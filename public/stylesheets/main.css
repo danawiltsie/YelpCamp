@@ -1,7 +1,7 @@
 html{
     height: 100%;
-    min-height: calc(100vh - 30rem);
 }
+
 
 .thumbnail img {
     width: 100%;
@@ -85,7 +85,12 @@ body{
     border-radius: 2px;
 }
 
-.jumbotron{
+.img-self{
+    height:100%;
+    width: 100%;
+}
+
+.jumbotron-styled{
     background-position: center;
     /*background-color: #222222;*/
     color: #FFF;
@@ -122,6 +127,7 @@ body{
     bottom: 0;
     height: 30rem;
     background-color: #222222;
+    margin-top: 20px;
 }
 
 .jumbotron #headerContent{
@@ -130,6 +136,10 @@ body{
     top: 50%;
     transform: translate(0, -50%);
     width: 100%;
+}
+
+.form{
+    text-align: center;
 }
 
 .smallborder{
@@ -161,9 +171,6 @@ a:hover{
     text-align: center;
 }
 
-footer {
-  height: 4rem;
-}
 
 #campgroundDisplay{
     min-height: calc(100% - 30rem);
@@ -188,6 +195,36 @@ footer {
    position: absolute;
 }
 
+.reviewDisplay:nth-child(odd){
+    background-color: #FFF;
+}
+
+#textarea{
+    height: 25em;
+    min-width: 350px;
+    margin: 0 auto;
+}
+
+.star{
+    font-size: 20px;
+}
+
+.star-rating{
+    font-size: 18px;
+}
+
+.return{
+    margin: 0 auto;
+    text-align: center;
+}
+
+.campground-description{
+    height: 25em;
+}
+
+.no-reviews{
+    text-align: center;
+}
 
 
 

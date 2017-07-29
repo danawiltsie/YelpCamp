@@ -53,7 +53,27 @@ var middlewareObject = {
             req.flash("error", "You must be logged in to use this feature");
             res.redirect("/login");
         }
-    }
+    },
+    
+    calculateAverageRatingAndSave: function(req){
+    Campground.findById(req.params.id).populate("comments").exec(function(err, campground){
+        if(err){
+            console.log(err);
+        }else{
+            var sumOfRating = 0;
+            campground.comments.forEach(function(comment){
+                console.log("Its ya boi, comment");
+                sumOfRating += comment.rating;
+            });
+            var averageRating = 0;
+            if(sumOfRating > 0){
+                averageRating = sumOfRating/campground.comments.length;
+            }
+            campground.averageRating = averageRating.toFixed(2);
+            campground.save();
+        }
+    });
+}
     
 };// End of Object
 

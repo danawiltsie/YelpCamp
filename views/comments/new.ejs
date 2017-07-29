@@ -1,7 +1,9 @@
 <% include ../partials/header %>
-<div class="container">
-    <h1 style="text-align: center;">Add a New Comment for <%= campground.name %></h1>
-    <div class="row" style="width: 30%; margin: 0 auto;">
+<% include ../partials/smallJumbotronHeader %>
+<div class="container form">
+    <h1>Leave a Review for <%= campground.name %>:</h1>
+    <div class="row">
+        Rating:
         <div id="rating">
             <span class="star star5">&#9734</span>
             <span class="star star4">&#9734</span>
@@ -11,15 +13,16 @@
         </div>
         <form action="/campgrounds/<%=campground._id%>/comments" method="POST">
             <div class="form-group">
-                <input required class="form-control" type="text" name="comment[text]" placeholder="text">
+                <textarea required id="textarea" class="form-control" type="text" name="comment[text]" placeholder="What did you think?"></textarea>
             </div> 
-                <input hidden required type="number" id="rating-form" name="comment[rating]" value="">
+            <input hidden required type="number" id="rating-form" name="comment[rating]" value="">
             <div class="form-group">
-                <button class="btn btn-lg btn-primary btn-block">Submit</button>
+                <button class="btn btn-lg btn-success">Submit</button>
             </div>
-            
         </form>
-        <a href="/campgrounds">Return to Campground</a>
+        <div>
+            <a class="btn btn-default btn-xs return" href="/campgrounds">Return to Campground</a>
+        </div>
     </div>
 
 </div>

@@ -1,29 +1,72 @@
 <% include ../partials/header %>
+<% include ../partials/smallJumbotronHeader %>
 <div class="container">
-    <h1 style="text-align: center;">Edit Campground: <%= campground.name %></h1>
-    <div class="row" style="width: 30%; margin: 0 auto;">
-        <form action="/campgrounds/<%=campground._id%>?_method=PUT" method="POST">
-            <div class="form-group">
-                <input class="form-control" type="text" value="<%= campground.name %>" name="campground[name]">
-            </div>            
-            <div class="form-group">
-                <input class="form-control" type="text" value="<%= campground.price %>" name="campground[price]" step="0.01">
+    <div class="row">
+        <div class="col-md-3">
+            <h3>Mark the location of the campsite on the map below</h3>
+            <div id="map"></div>
+        </div>
+        <div class="col-md-9">
+            <div class="well">
+                <h1 style="text-align: center;">Edit Campground: <%= campground.name %></h1>
+                <form action="/campgrounds/<%=campground._id%>?_method=PUT" method="POST">
+                    <div class="form-group">
+                        <input class="form-control" type="text" value="<%= campground.name %>" name="campground[name]" required>
+                    </div>            
+                    <div class="form-group">
+                        <input class="form-control" type="number" value="<%= campground.price %>" name="campground[price]" min="0.00" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" value="<%=campground.image%>" name="campground[image]" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea required id="textarea" class="form-control" type="text" name="campground[description]" required><%= campground.description %></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" value="<%=campground.address%>" name="campground[address]" required>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" value="<%=campground.city%>" name="campground[city]" required>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" value="<%=campground.province%>" name="campground[state]" required>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" value="<%=campground.country%>" name="campground[country]" required>
+                    </div>
+                    <input type="hidden" name="lat" value="<%=campground.lat%>" id="lat" required>
+                    <input type="hidden" name="lng" value="<%=campground.lng%>" id="lng" required>
+                    <div class="form-group">
+                        <button class="btn btn-lg btn-success btn-block">Submit Changes</button>
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <input class="form-control" type="text" value="<%= campground.image %>" name="campground[image]">
-            </div>            
-            <div class="form-group">
-                <input class="form-control" type="text" value="<%= campground.description %>" name="campground[description]">
-            </div>
-            <div class="form-group">
-                <button class="btn btn-lg btn-primary btn-block">Submit Changes</button>
-            </div>
-            
-        </form>
-        
-        <a href="/campgrounds">Return to Campgrounds</a>
+        </div>
+        <div class="return">
+            <a class="btn btn-default btn-xs return" href="/campgrounds">Return to Campgrounds</a>
+        </div>
     </div>
-
 </div>
-
+<script>
+    function initMap() {
+        var initialLocation = {lat: <%=campground.lat%>, lng: <%=campground.lng%>};
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 4,
+            center: initialLocation
+        });
+         var marker = new google.maps.Marker({
+                position: initialLocation,
+                map: map
+            });
+        google.maps.event.addListener(map, 'click', function(event) {
+            var marker = new google.maps.Marker({
+                position: event.latLng,
+                map: map
+            });
+            document.getElementById("lat").value = event.latLng.lat();
+            document.getElementById("lng").value = event.latLng.lng();
+        });
+    }
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEg7NomH8LKb1DGTPHb_NFPI2zqa0zSIc&callback=initMap"></script>
 <% include ../partials/footer %>

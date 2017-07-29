@@ -21,7 +21,11 @@ router.post("/", middleware.isLoggedIn, function(req,res){
         price: req.body.price,
         lat: req.body.lat,
         lng: req.body.lng,
-        author: author
+        address: req.body.address,
+        city: req.body.city,
+        state: req.body.state,
+        country: req.body.country,
+        author: author,
     };
     Campground.create(newCampground, function(err, newlyCreated){
         if(err){
@@ -63,6 +67,7 @@ router.get("/:id", function(req,res){
             req.flash("error", "Something went wrong; Please try again");
             console.log(err)
         }else{
+            //determine if this campground is a favourite of the current user
             var isFavourite = false;
             if(req.user){
                 req.user.favourites.forEach(function(favourite){
@@ -71,7 +76,6 @@ router.get("/:id", function(req,res){
                     }
                 });
             }
-            console.log(foundCampground);
             res.render("campgrounds/show", {campground: foundCampground, favouriteTorF: isFavourite})
         }
     });

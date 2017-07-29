@@ -1,5 +1,5 @@
 <% include ../partials/header %>
-<header class="jumbotron favourites"> 
+<header class="jumbotron favourites jumbotron-styled"> 
     <div id="headerContent" class="container">
         <h1><i class="fa fa-heart" aria-hidden="true"></i> Favourites</h1>
         <p>Sometimes the best places are the ones most familiar</p>
@@ -8,7 +8,7 @@
 <div class="smallborder"></div>
 <div id="campgroundDisplay" class="container">
     <div class="row" style="display:flex; flex-wrap:wrap;">
-        <%if(campgrounds != {}){ %> 
+        <%if(campgrounds.length != 0){ %> 
         <% campgrounds.forEach(function(site){ %>
             <div class="col-md-3 col-sm-6">
                 <div class="thumbnail">
@@ -24,7 +24,14 @@
                     </div>
                 </div>
             </div>
-        <% }); }%>
+        <% }); %>
+        <% } else { %>
+            <div class="jumbotron noFavourites">
+                <h1>You don't have any favourites yet.</h1>
+                <p>Click <a href="/campgrounds">here</a> to find some</p>
+                
+            </div>
+        <% } %>
     </div>
 </div>
 <% include ../partials/footer %>
