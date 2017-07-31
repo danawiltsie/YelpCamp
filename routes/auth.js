@@ -38,8 +38,7 @@ router.get("/login", function(req,res){
 router.post("/login", passport.authenticate("local", {
     failureRedirect: "/login"
 }), function(req,res){
-        res.redirect(req.session.returnTo || '/');
-        delete req.session.returnTo;
+        res.redirect("/campgrounds");
 });
 
 router.get("/logout", function(req,res){
