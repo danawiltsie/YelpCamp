@@ -1,9 +1,9 @@
 <% include ../partials/header %>
 <% include ../partials/smallJumbotronHeader %>
 <div class="container form">
-    <h1>Leave a Review for <%= campground.name %>:</h1>
+    <h1>Leave a Review for <a href="/campgrounds/<%= campground._id %>"><%= campground.name %></a>:</h1>
     <div class="row">
-        Rating:
+        <span>Rating:</span>
         <div id="rating">
             <span class="star star5">&#9734</span>
             <span class="star star4">&#9734</span>
@@ -11,23 +11,25 @@
             <span class="star star2">&#9734</span>
             <span class="star star1">&#9734</span>
         </div>
+        <div id="text-alert">Please rate the campground from 1 to 5</div>
         <form action="/campgrounds/<%=campground._id%>/comments" method="POST">
             <div class="form-group">
-                <textarea required id="textarea" class="form-control" type="text" name="comment[text]" placeholder="What did you think?"></textarea>
+                <textarea id="textarea" class="form-control" type="text" name="comment[text]" placeholder="What did you think?" required></textarea>
             </div> 
-            <input hidden required type="number" id="rating-form" name="comment[rating]" value="">
+            <input hidden type="number" id="rating-form" name="comment[rating]" value="">
             <div class="form-group">
-                <button class="btn btn-lg btn-success">Submit</button>
+                <button id="submit-button" class="btn btn-lg btn-success">Submit</button>
             </div>
         </form>
         <div>
-            <a class="btn btn-default btn-xs return" href="/campgrounds">Return to Campground</a>
+            <a class="btn btn-default btn-xs return" href="/campgrounds/<%= campground._id %>">Return to Campground</a>
         </div>
     </div>
-
 </div>
 <script>
+var submitButton = document.getElementById("submit-button");
 var ratingForm = document.getElementById("rating-form");
+var textAlert = document.getElementById("text-alert");
 var stars = document.getElementsByClassName("star");
     stars[4].addEventListener("click", function(){
         ratingForm.value = 1;
@@ -36,6 +38,7 @@ var stars = document.getElementsByClassName("star");
         stars[2].innerHTML = "&#9734";
         stars[1].innerHTML = "&#9734";
         stars[0].innerHTML = "&#9734";
+        removeRatingAlert();
     });    
     stars[3].addEventListener("click", function(){
         ratingForm.value = 2;
@@ -44,6 +47,7 @@ var stars = document.getElementsByClassName("star");
         stars[2].innerHTML = "&#9734";
         stars[1].innerHTML = "&#9734";
         stars[0].innerHTML = "&#9734";
+        removeRatingAlert()
     });    
     stars[2].addEventListener("click", function(){
         ratingForm.value = 3;
@@ -52,6 +56,7 @@ var stars = document.getElementsByClassName("star");
         stars[2].innerHTML = "&#9733";
         stars[1].innerHTML = "&#9734";
         stars[0].innerHTML = "&#9734";
+        removeRatingAlert();
     });    
     stars[1].addEventListener("click", function(){
         ratingForm.value = 4;
@@ -60,6 +65,7 @@ var stars = document.getElementsByClassName("star");
         stars[2].innerHTML = "&#9733";
         stars[1].innerHTML = "&#9733";
         stars[0].innerHTML = "&#9734";
+        removeRatingAlert();
     });    
     stars[0].addEventListener("click", function(){
         ratingForm.value = 5;
@@ -68,6 +74,27 @@ var stars = document.getElementsByClassName("star");
         stars[2].innerHTML = "&#9733";
         stars[1].innerHTML = "&#9733";
         stars[0].innerHTML = "&#9733";
-    }); 
+        removeRatingAlert();
+    });
+    
+submitButton.addEventListener("click", function(){
+    if(ratingForm.value == ""){
+        submitButton.setAttribute("disabled", "disabled");
+        for(var i = 0; i < 5; i++){
+            stars[i].classList.add("text-focus");
+        }
+        textAlert.classList.add("text-alert-focus");
+    }
+});
+
+function removeRatingAlert(){
+    submitButton.removeAttribute("disabled");
+    for(var i = 0; i < 5; i++){
+        stars[i].classList.remove("text-focus");
+    }
+    textAlert.classList.remove("text-alert-focus");
+    return;
+}
+
 </script>
 <% include ../partials/footer %>

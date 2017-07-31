@@ -9,27 +9,26 @@
 <div id="campgroundDisplay" class="container">
     <div class="row" style="display:flex; flex-wrap:wrap;">
         <%if(campgrounds.length != 0){ %> 
-        <% campgrounds.forEach(function(site){ %>
-            <div class="col-md-3 col-sm-6">
-                <div class="thumbnail">
-                    <img src="<%= site.image %>">
-                    <div class="caption-full">
-                        <h4><%= site.name %></h4>
-                        <p>
-                            <a type="button" class="btn btn-primary" href="/campgrounds/<%= site._id%>">View</a>
-                            <form class="deleteForm" action="/campgrounds/favourites/<%=site._id%>?_method=DELETE" method="POST">
-                                <button class="btn btn-default deleteForm">Remove</button>
-                            </form>
-                        </p>
+            <% campgrounds.forEach(function(site){ %>
+                <div class="col-md-3 col-sm-6">
+                    <div class="thumbnail">
+                        <img src="<%= site.image %>">
+                        <div class="caption-full">
+                            <h4><%= site.name %></h4>
+                            <p>
+                                <a type="button" class="btn btn-primary" href="/campgrounds/<%= site._id%>">View</a>
+                                <form class="deleteForm" action="/campgrounds/favourites/<%=site._id%>?_method=DELETE" method="POST">
+                                    <button class="btn btn-default deleteForm">Remove</button>
+                                </form>
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        <% }); %>
+            <% }); %>
         <% } else { %>
-            <div class="jumbotron noFavourites">
-                <h1>You don't have any favourites yet.</h1>
-                <p>Click <a href="/campgrounds">here</a> to find some</p>
-                
+            <div class="jumbotron no-favourites">
+                <h1><i class="fa fa-heart-o" aria-hidden="true"></i> You have no favourites yet.</h1>
+                <p>Click <a href="/campgrounds">here</a> to find some.</p>
             </div>
         <% } %>
     </div>

@@ -5,11 +5,12 @@
         <div class="col-md-3">
             <h3>Mark the location of the campsite on the map below</h3>
             <div id="map"></div>
+            <div id="text-alert">Please mark the location of the site before continuing</div>
         </div>
         <div class="col-md-9">
             <div class="well">
                 <h1>Add a New CampGround</h1>
-                <form action="/campgrounds" method="POST">
+                <form id="campgroundForm" action="/campgrounds" method="POST">
                     <div class="form-group">
                         <input class="form-control" type="text" placeholder="name" name="name" required>
                     </div>            
@@ -20,7 +21,7 @@
                         <input class="form-control" type="text" placeholder="image url" name="image" required>
                     </div>
                     <div class="form-group">
-                        <textarea required id="textarea" class="form-control" type="text" name="description" placeholder="description" required></textarea>
+                        <textarea  id="textarea" class="form-control" type="text" name="description" placeholder="description" required></textarea>
                     </div>
                     <div class="form-group">
                         <input class="form-control" type="text" placeholder="address" name="address" required>
@@ -34,10 +35,10 @@
                     <div class="form-group">
                         <input class="form-control" type="text" placeholder="country" name="country" required>
                     </div>
-                    <input type="hidden" name="lat" id="lat" value="">
-                    <input type="hidden" name="lng" id="lng" value="">
-                    <div class="form-group">
-                        <button class="btn btn-lg btn-success btn-block">Submit</button>
+                    <input class="form-control" type="hidden" name="lat" id="lat" value="">
+                    <input class="form-control" type="hidden" name="lng" id="lng" value="">
+                    <div class="form-group" id="submit-button-div">
+                        <button id="submit" class="btn btn-lg btn-success btn-block">Submit</button>
                     </div>
                 </form>
                 <div class="return">
@@ -48,6 +49,11 @@
     </div>
 </div>
 <script>
+    var lng = document.getElementById("lng");
+    var lat = document.getElementById("lat");
+    var submitButton = document.getElementById("submit");
+    var textAlert = document.getElementById("text-alert");
+    var mapDiv = document.getElementById("map");
     function initMap() {
         var initialLocation = {lat: 49.281688, lng: -123.118489};
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -59,10 +65,20 @@
                 position: event.latLng,
                 map: map
             });
-            document.getElementById("lat").value = event.latLng.lat();
-            document.getElementById("lng").value = event.latLng.lng();
+            lat.value = event.latLng.lat();
+            lng.value = event.latLng.lng();
+            submitButton.removeAttribute("disabled");
+            mapDiv.classList.remove("focus-map");
+            textAlert.classList.remove("text-alert-focus");
         });
     }
+    submitButton.addEventListener("click", function(){
+        if(lng.value == "" || lat.value == ""){
+            submitButton.setAttribute("disabled", "disabled");
+            mapDiv.classList.add("focus-map");
+            textAlert.classList.add("text-alert-focus");
+        }
+    });
 </script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEg7NomH8LKb1DGTPHb_NFPI2zqa0zSIc&callback=initMap"></script>
 <% include ../partials/footer %>

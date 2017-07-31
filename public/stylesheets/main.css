@@ -2,7 +2,6 @@ html{
     height: 100%;
 }
 
-
 .thumbnail img {
     width: 100%;
 }
@@ -28,6 +27,11 @@ html{
     width: 100%;
     height: 400px;
     margin-bottom: 20px;
+    transition: border 1s ease 0s;
+    border: 2px solid white;
+    border-radius: 7px;
+    outline: none;
+    box-shadow: 0 0 10px #FFF;
 }
 
 body{
@@ -35,11 +39,6 @@ body{
     height: 100%;
 }
 
-/*.thumbnail{*/
-    /*background-color: #222222;*/
-    /*color: white;*/
-/*    border-color: #161616;*/
-/*}*/
 
 #favouritedButton{
     float: left;
@@ -117,7 +116,6 @@ body{
 
 .jumbotron.small h2{
     font-size: 40px;
-    
 }
 
 #footer{
@@ -157,6 +155,7 @@ body{
 .alert{
     border-radius: 0px;
     margin-bottom: 0px;
+    text-align: center;
 }
 
 a{
@@ -173,7 +172,7 @@ a:hover{
 
 
 #campgroundDisplay{
-    min-height: calc(100% - 30rem);
+    min-height: calc(100% - 50rem);
 }
 
 .navbar-header i{
@@ -207,6 +206,8 @@ a:hover{
 
 .star{
     font-size: 20px;
+    box-shadow: 0 0 10px #FFF;
+    transition: text-shadow 1s linear;
 }
 
 .star-rating{
@@ -226,5 +227,31 @@ a:hover{
     text-align: center;
 }
 
+#map.focus-map{
+    border: 2px solid red;
+    border-radius: 7px;
+    outline: none;
+    box-shadow: 0 0 10px #F00;
+}
+
+
+#text-alert{
+    opacity: 0;
+    color: red;
+    transition: opacity 1s linear;
+    font-size: 10px;
+}
+
+#text-alert.text-alert-focus{
+    opacity: 100;
+}
+
+.text-focus{
+    text-shadow: 0 0 1px #F00;
+}
+
+.no-favourites{
+    width: 100%;
+}
 
 
