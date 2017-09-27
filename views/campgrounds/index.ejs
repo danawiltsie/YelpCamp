@@ -21,7 +21,43 @@
                             <% if(!site.averageRating){ %>
                                 <div class="pull-right">Not yet rated</div>
                             <% } else { %>
-                                <div class="pull-right"><%=site.averageRating%>/5</div>
+                                <div class="pull-right">
+                                     <% if(Math.round(site.averageRating) == 1){ %>
+                                        <span class="star-rating">&#9733</span>
+                                        <span class="star-rating">&#9734</span>
+                                        <span class="star-rating">&#9734</span>
+                                        <span class="star-rating">&#9734</span>
+                                        <span class="star-rating">&#9734</span>
+                                    <% } %>
+                                    <% if(Math.round(site.averageRating) == 2){ %>
+                                        <span class="star-rating">&#9733</span>
+                                        <span class="star-rating">&#9733</span>
+                                        <span class="star-rating">&#9734</span>
+                                        <span class="star-rating">&#9734</span>
+                                        <span class="star-rating">&#9734</span>
+                                    <% } %>
+                                    <% if(Math.round(site.averageRating) == 3){ %>
+                                        <span class="star-rating">&#9733</span>
+                                        <span class="star-rating">&#9733</span>
+                                        <span class="star-rating">&#9733</span>
+                                        <span class="star-rating">&#9734</span>
+                                        <span class="star-rating">&#9734</span>
+                                    <% } %>
+                                    <% if(Math.round(site.averageRating) == 4){ %>
+                                        <span class="star-rating">&#9733</span>
+                                        <span class="star-rating">&#9733</span>
+                                        <span class="star-rating">&#9733</span>
+                                        <span class="star-rating">&#9733</span>
+                                        <span class="star-rating">&#9734</span>
+                                    <% } %>
+                                    <% if(Math.round(site.averageRating) == 5){ %>
+                                        <span class="star-rating">&#9733</span>
+                                        <span class="star-rating">&#9733</span>
+                                        <span class="star-rating">&#9733</span>
+                                        <span class="star-rating">&#9733</span>
+                                        <span class="star-rating">&#9733</span>
+                                    <% } %>
+                                </div>
                             <% } %>
                             <a type="button" class="btn btn-success" href="/campgrounds/<%= site._id%>">View</a>
                         </p>
