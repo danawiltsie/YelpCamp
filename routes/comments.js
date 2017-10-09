@@ -65,6 +65,7 @@ router.get("/:comment_id/edit", middleware.checkCommentOwnership, function(req,r
             console.log(err);
             res.redirect("back");
         } else {
+            console.log(comment);
             res.render("comments/edit", {campground_id: req.params.id, comment: comment});
         }
     });
@@ -78,6 +79,7 @@ router.put("/:comment_id", middleware.checkCommentOwnership, function(req,res){
             console.log(err);
             res.redirect("back");
         } else {
+            middleware.calculateAverageRatingAndSave(req);
             req.flash("success", "Edit successful");
             res.redirect("/campgrounds/" + req.params.id);
         }

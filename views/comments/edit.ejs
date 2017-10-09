@@ -1,7 +1,8 @@
 <% include ../partials/header %>
-<div class="container">
-    <h1 style="text-align: center;">Edit Your Comment</h1>
-    <div class="row" style="width: 30%; margin: 0 auto;">
+<% include ../partials/smallJumbotronHeader %>
+<div class="container form">
+    <h1 style="text-align: center;">Edit Your Review:</h1>
+    <div class="row">
         Rating:
         <div id="rating">
             <% if(comment.rating == 1){ %>
@@ -42,11 +43,11 @@
         </div>
         <form action="/campgrounds/<%=campground_id%>/comments/<%=comment._id%>?_method=PUT" method="POST">
             <div class="form-group">
-                <input class="form-control" type="text" name="comment[text]" value= "<%=comment.text%>">
+                <input id="textarea" class="form-control" type="text" name="comment[text]" value= "<%=comment.text%>">
             </div>    
             <input hidden type="number" id="rating-form" name="comment[rating]" value="<%=comment.rating%>">
             <div class="form-group">
-                <button class="btn btn-lg btn-primary btn-block">Submit</button>
+                <button id="submit-button" class="btn btn-lg btn-success btn-block">Submit</button>
             </div>
         </form>
         <a href="/campgrounds">Return to Campground</a>

@@ -14,7 +14,7 @@
         <div id="text-alert">Please rate the campground from 1 to 5</div>
         <form action="/campgrounds/<%=campground._id%>/comments" method="POST">
             <div class="form-group">
-                <textarea id="textarea" class="form-control" type="text" name="comment[text]" placeholder="What did you think?" required></textarea>
+                <textarea id="textarea" class="form-control" type="text" name="comment[text]" placeholder="What did you think?"></textarea>
             </div> 
             <input hidden type="number" id="rating-form" name="comment[rating]" value="">
             <div class="form-group">

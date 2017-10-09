@@ -16,9 +16,50 @@
                         <div class="caption-full">
                             <h4><%= site.name %></h4>
                             <p>
-                                <a type="button" class="btn btn-primary" href="/campgrounds/<%= site._id%>">View</a>
+                                <% if(!site.averageRating){ %>
+                                    <div class="pull-right">Not yet rated</div>
+                                <% } else { %>
+                                    <div class="pull-right">
+                                         <% if(Math.round(site.averageRating) == 1){ %>
+                                            <span class="star-rating">&#9733</span>
+                                            <span class="star-rating">&#9734</span>
+                                            <span class="star-rating">&#9734</span>
+                                            <span class="star-rating">&#9734</span>
+                                            <span class="star-rating">&#9734</span>
+                                        <% } %>
+                                        <% if(Math.round(site.averageRating) == 2){ %>
+                                            <span class="star-rating">&#9733</span>
+                                            <span class="star-rating">&#9733</span>
+                                            <span class="star-rating">&#9734</span>
+                                            <span class="star-rating">&#9734</span>
+                                            <span class="star-rating">&#9734</span>
+                                        <% } %>
+                                        <% if(Math.round(site.averageRating) == 3){ %>
+                                            <span class="star-rating">&#9733</span>
+                                            <span class="star-rating">&#9733</span>
+                                            <span class="star-rating">&#9733</span>
+                                            <span class="star-rating">&#9734</span>
+                                            <span class="star-rating">&#9734</span>
+                                        <% } %>
+                                        <% if(Math.round(site.averageRating) == 4){ %>
+                                            <span class="star-rating">&#9733</span>
+                                            <span class="star-rating">&#9733</span>
+                                            <span class="star-rating">&#9733</span>
+                                            <span class="star-rating">&#9733</span>
+                                            <span class="star-rating">&#9734</span>
+                                        <% } %>
+                                        <% if(Math.round(site.averageRating) == 5){ %>
+                                            <span class="star-rating">&#9733</span>
+                                            <span class="star-rating">&#9733</span>
+                                            <span class="star-rating">&#9733</span>
+                                            <span class="star-rating">&#9733</span>
+                                            <span class="star-rating">&#9733</span>
+                                        <% } %>
+                                    </div>
+                                <% } %>
+                                <a type="button" class="btn btn-success" href="/campgrounds/<%= site._id%>">View</a>
                                 <form class="deleteForm" action="/campgrounds/favourites/<%=site._id%>?_method=DELETE" method="POST">
-                                    <button class="btn btn-default deleteForm">Remove</button>
+                                    <button class="btn btn-xs btn-danger deleteForm">Remove</button>
                                 </form>
                             </p>
                         </div>
