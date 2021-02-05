@@ -22,7 +22,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(methodOverride("_method"));
 //mongoose.connect("mongodb://localhost/yelp_camp"); //local
-//mongoose.connect("mongodb://danawiltsie:Th1rt3en@ds151702.mlab.com:51702/danawiltsie_yelpcamp"); //production
 console.log("DATABASEURL = " + process.env.DATABASEURL);
 mongoose.connect(process.env.DATABASEURL);
 app.use(flash());
@@ -31,7 +30,7 @@ app.use(flash());
 
 // PASSPORT CONFIG 
 app.use(require("express-session")({
-    secret: "Zoo Wee Mama man mango!",
+    secret: process.env.EXPRESS_SESSION_SECRET,
     resave: false,
     saveUninitialized: false
 }));
